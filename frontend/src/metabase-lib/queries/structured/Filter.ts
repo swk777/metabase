@@ -93,6 +93,7 @@ export default class Filter extends MBQLClause {
    * Returns true if the filter is valid
    */
   isValid() {
+    console.log("this.isStandard(): " + this.isStandard());
     if (this.isStandard()) {
       // has an operator name and dimension or expression
       const dimension = this.dimension();
@@ -102,11 +103,12 @@ export default class Filter extends MBQLClause {
       }
 
       const query = this.query();
-
+      console.log(query.filterDimensionOptions(), dimension);
       if (
         !dimension ||
         !(query && query.filterDimensionOptions().hasDimension(dimension))
       ) {
+        console.log(1);
         return false;
       }
 
